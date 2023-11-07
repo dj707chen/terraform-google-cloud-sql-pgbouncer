@@ -20,7 +20,7 @@ data "google_compute_subnetwork" "subnet" {
 
 module "private_service_access" {
   source  = "GoogleCloudPlatform/sql-db/google//modules/private_service_access"
-  version = "~>5.0.0"
+  version = ">=5.0.0"
 
   project_id  = var.project
   vpc_network = var.network_name
@@ -28,7 +28,7 @@ module "private_service_access" {
 
 module "db" {
   source  = "GoogleCloudPlatform/sql-db/google//modules/postgresql"
-  version = "~>5.0.0"
+  version = ">=5.0.0"
 
   project_id = var.project
   name       = "db-${random_id.suffix.hex}"
@@ -47,6 +47,7 @@ module "db" {
     private_network     = data.google_compute_subnetwork.subnet.network
     require_ssl         = false
     authorized_networks = []
+    allocated_ip_range  = "google-managed-services-default"
   }
 
   module_depends_on = [module.private_service_access.peering_completed]
@@ -77,7 +78,7 @@ module "pgbouncer" {
   database_host = module.db.private_ip_address
 
   users = [
-    { name = var.db_user, password = var.db_password },
+    "${var.db_user} ${var.db_password}"
   ]
 
   module_depends_on = [module.db]
