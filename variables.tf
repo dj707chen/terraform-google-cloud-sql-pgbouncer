@@ -27,7 +27,7 @@ variable "port" {
 
 variable "users" {
   description = "The list of users to be created in PgBouncer's userlist.txt. Passwords can be provided as plain-text or md5 hashes."
-  type        = list(string)
+  type        = list
 }
 
 variable "auth_user" {
@@ -100,7 +100,7 @@ variable "machine_type" {
 variable "boot_image" {
   description = "The boot image used by PgBouncer instances. Defaults to the latest LTS Container Optimized OS version. Must be an image compatible with cloud-init (https://cloud-init.io)."
   type        = string
-  default     = "cos-cloud/cos-89-lts"
+  default     = "cos-cloud/cos-97-lts"
 }
 
 variable "tags" {

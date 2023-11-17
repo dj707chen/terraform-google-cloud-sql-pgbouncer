@@ -35,7 +35,7 @@ module "db" {
 
   database_version = "POSTGRES_12"
   region           = local.region
-  zone             = split("-", var.zone)[2]
+  zone             = var.zone
   tier             = "db-f1-micro"
 
   db_name       = var.db_name
@@ -78,7 +78,7 @@ module "pgbouncer" {
   database_host = module.db.private_ip_address
 
   users = [
-    "${var.db_user} ${var.db_password}"
+    { name = var.db_user, password = var.db_password },
   ]
 
   module_depends_on = [module.db]

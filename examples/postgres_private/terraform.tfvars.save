@@ -1,0 +1,9 @@
+project = "lunar-outlet-403221"
+zone    = "us-central1-b"
+
+network_name    = "default"
+subnetwork_name = "default"
+
+db_name     = "antslift_db"
+db_user     = "antslift-user"
+db_password = "aPass"
