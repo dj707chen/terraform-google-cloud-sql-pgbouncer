@@ -44,7 +44,7 @@ module "db" {
   user_password = var.db_password
 
   ip_configuration = {
-    ipv4_enabled        = false
+    ipv4_enabled        = true
     private_network     = data.google_compute_subnetwork.producer-subnet.network
     require_ssl         = false
     authorized_networks = []

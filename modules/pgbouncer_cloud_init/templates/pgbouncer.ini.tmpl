@@ -9,8 +9,8 @@ user = postgres
 auth_file = /etc/pgbouncer/userlist.txt
 auth_type = md5
 
-pidfile = /usr/local/pgbouncer-1.9.0/pgbouncer.pid
-logfile = /usr/local/pgbouncer-1.9.0/log/pgbouncer.log
+pidfile = /etc/pgbouncer/pgbouncer.pid
+logfile = /etc/pgbouncer/pgbouncer.log
 
 %{ if custom_config == "" ~}
 %{ if auth_query != null && auth_user != null ~}

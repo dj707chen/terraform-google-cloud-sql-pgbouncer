@@ -22,13 +22,13 @@ variable "users" {
 variable "auth_user" {
   description = "Any user not specified in `users` will be queried through the `auth_query` query from `pg_shadow` in the database, using `auth_user`. The user for `auth_user` must be included in `users`."
   type        = string
-  default     = null
+  default     = "pgbouncer"
 }
 
 variable "auth_query" {
   description = "Query to load user’s password from database."
   type        = string
-  default     = null
+  default     = "SELECT username, password from pgbouncer.get_auth($1)"
 }
 
 variable "pool_mode" {
